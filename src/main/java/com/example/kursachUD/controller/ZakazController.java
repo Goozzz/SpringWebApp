@@ -1,11 +1,11 @@
 package com.example.kursachUD.controller;
 
 
-import com.example.kursachUD.model.Sotrudnik;
+import com.example.kursachUD.model.CoffeeShopWorker;
 import com.example.kursachUD.model.Coffee;
 import com.example.kursachUD.model.Usr;
 import com.example.kursachUD.model.Zakaz;
-import com.example.kursachUD.repo.SotrudnikRepo;
+import com.example.kursachUD.repo.CoffeeShopWorkerRepo;
 import com.example.kursachUD.repo.CoffeeRepo;
 import com.example.kursachUD.repo.UsrRepo;
 import com.example.kursachUD.repo.ZakazRepo;
@@ -24,7 +24,7 @@ public class ZakazController {
     @Autowired
     private UsrRepo userRepo;
     @Autowired
-    private SotrudnikRepo sotrudnikRepo;
+    private CoffeeShopWorkerRepo coffeeShopWorkerRepo;
     @Autowired
     private CoffeeRepo coffeeRepo;
 
@@ -40,9 +40,9 @@ public class ZakazController {
         Zakaz zakaz = new Zakaz(zakazName);
         try {
             Usr user = userRepo.findById(userId).get();
-            Sotrudnik sotrudnik = sotrudnikRepo.findById(sotrId).get();
+            CoffeeShopWorker coffeeShopWorker = coffeeShopWorkerRepo.findById(sotrId).get();
             Coffee coffee = coffeeRepo.findById(tovarId).get();
-            sotrudnik.getZakazs().add(zakaz);
+            coffeeShopWorker.getZakazs().add(zakaz);
             user.getZakazs().add(zakaz);
             coffee.getZakazs().add(zakaz);
 
@@ -50,7 +50,7 @@ public class ZakazController {
             zakazRepo.save(zakaz);
             coffeeRepo.save(coffee);
             userRepo.save(user);
-            sotrudnikRepo.save(sotrudnik);
+            coffeeShopWorkerRepo.save(coffeeShopWorker);
 
         }catch (Exception e) {
 

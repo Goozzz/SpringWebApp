@@ -17,7 +17,7 @@
         <a class="nav-item nav-link" href="/">Главная</a>
         <a class="nav-item nav-link" href="/user">Пользователи</a>
         <a class="nav-item nav-link" href="/zakaz">Заказы</a>
-        <a class="nav-item nav-link active" href="/sotr">Сотрудники</a>
+        <a class="nav-item nav-link active" href="/worker">Сотрудники</a>
         <a class="nav-item nav-link" href="/harakt">Характеристики</a>
         <a class="nav-item nav-link" href="/coffee">Товары</a>
     </nav>
@@ -25,21 +25,21 @@
 
 </header>
 
-<form style="padding: 10px" method="post"action="addSotr">
+<form style="padding: 10px" method="post"action="addCoffeeShopWorker">
     <div class="form-row">
         <div class="form-group col-md-2">
-            <label for="inputSotrEmail">Email</label>
-            <input type="email" name="sotrEmail" class="form-control" id="inputSotrEmail" placeholder="Email">
+            <label for="inputCoffeeShopWorkerEmail">Email</label>
+            <input type="email" name="coffeeShopWorkerEmail" class="form-control" id="inputCoffeeShopWorkerEmail" placeholder="Email">
         </div>
 
         <div class="form-group col-md-2">
-            <label for="inputSotrName">Имя</label>
-            <input type="text" name="sotrName" class="form-control" id="inputSotrName" placeholder="Имя cотрудника">
+            <label for="inputCoffeeShopWorkerName">Имя</label>
+            <input type="text" name="coffeeShopWorkerName" class="form-control" id="inputCoffeeShopWorkerName" placeholder="Имя cотрудника">
         </div>
 
         <div class="form-group col-md-1">
-            <label for="inputSotrPhoneNumber">Телефон</label>
-            <input type="text" name="sotrPhoneNumber" class="form-control" id="inputSotrPhoneNumber" placeholder="Номер телефона">
+            <label for="inputCoffeeShopWorkerPhoneNumber">Телефон</label>
+            <input type="text" name="coffeeShopWorkerPhoneNumber" class="form-control" id="inputCoffeeShopWorkerPhoneNumber" placeholder="Номер телефона">
         </div>
 
     </div>
@@ -50,11 +50,11 @@
 <hr>
 
 
-<form style="padding: 10px" method="post"action="deleteSotr">
+<form style="padding: 10px" method="post"action="deleteCoffeeShopWorker">
     <div class="form-row">
         <div class="form-group col-md-1">
-            <label for="inputSotrId">Id</label>
-            <input type="number" name="sotrId" class="form-control" id="inputSotrId" placeholder="Id сотрудника">
+            <label for="inputCoffeeShopWorkerId">Id</label>
+            <input type="number" name="coffeeShopWorkerId" class="form-control" id="inputCoffeeShopWorkerId" placeholder="Id сотрудника">
         </div>
     </div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
@@ -63,25 +63,25 @@
 
 <hr>
 
-<form style="padding: 10px" method="post"action="updateSotr">
+<form style="padding: 10px" method="post"action="updateCoffeeShopWorker">
     <div class="form-row">
         <div class="form-group col-md-1">
-            <label for="inputSotrId">Id</label>
-            <input type="number" name="sotrId" class="form-control" id="inputSotrId" placeholder="Id сотрудника">
+            <label for="inputCoffeeShopWorkerId">Id</label>
+            <input type="number" name="coffeeShopWorkerId" class="form-control" id="inputCoffeeShopWorkerId" placeholder="Id сотрудника">
         </div>
         <div class="form-group col-md-2">
-            <label for="inputSotrEmail">Email</label>
-            <input type="email" name="sotrEmail" class="form-control" id="inputSotrEmail" placeholder="Email">
+            <label for="inputCoffeeShopWorkerEmail">Email</label>
+            <input type="email" name="coffeeShopWorkerEmail" class="form-control" id="inputCoffeeShopWorkerEmail" placeholder="Email">
         </div>
 
         <div class="form-group col-md-2">
-            <label for="inputSotrName">Имя</label>
-            <input type="text" name="sotrName" class="form-control" id="inputSotrName" placeholder="Имя cотрудника">
+            <label for="inputCoffeeShopWorkerName">Имя</label>
+            <input type="text" name="coffeeShopWorkerName" class="form-control" id="inputCoffeeShopWorkerName" placeholder="Имя cотрудника">
         </div>
 
         <div class="form-group col-md-1">
-            <label for="inputSotrPhoneNumber">Телефон</label>
-            <input type="text" name="sotrPhoneNumber" class="form-control" id="inputSotrPhoneNumber" placeholder="Номер телефона">
+            <label for="inputCoffeeShopWorkerPhoneNumber">Телефон</label>
+            <input type="text" name="coffeeShopWorkerPhoneNumber" class="form-control" id="inputCoffeeShopWorkerPhoneNumber" placeholder="Номер телефона">
         </div>
 
     </div>
@@ -102,16 +102,16 @@
         </tr>
         </thead>
         <tbody>
-        {{#sotrudniks}}
+        {{#coffeeShopWorkers}}
             <div>
                 <tr>
-                    <td>{{sotrId}}</td>
-                    <td>{{sotrName}}</td>
-                    <td>{{sotrPhoneNumber}}</td>
-                    <td>{{sotrEmail}}</td>
+                    <td>{{CoffeeShopWorkerId}}</td>
+                    <td>{{coffeeShopWorkerName}}</td>
+                    <td>{{coffeeShopWorkerPhoneNumber}}</td>
+                    <td>{{coffeeShopWorkerEmail}}</td>
                 </tr>
             </div>
-        {{/sotrudniks}}
+        {{/coffeeShopWorkers}}
         </tbody>
     </table>
 </div>

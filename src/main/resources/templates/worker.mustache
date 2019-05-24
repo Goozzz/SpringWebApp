@@ -1,0 +1,121 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>KURSACH</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<header>
+
+    <nav class="nav nav-tabs nav-justified">
+        <a class="nav-item nav-link" href="/">Главная</a>
+        <a class="nav-item nav-link" href="/user">Пользователи</a>
+        <a class="nav-item nav-link" href="/zakaz">Заказы</a>
+        <a class="nav-item nav-link active" href="/worker">Сотрудники</a>
+        <a class="nav-item nav-link" href="/harakt">Характеристики</a>
+        <a class="nav-item nav-link" href="/coffee">Товары</a>
+    </nav>
+
+
+</header>
+
+<form style="padding: 10px" method="post"action="addCoffeeShopWorker">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label for="inputCoffeeShopWorkerEmail">Email</label>
+            <input type="email" name="coffeeShopWorkerEmail" class="form-control" id="inputCoffeeShopWorkerEmail" placeholder="Email">
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="inputCoffeeShopWorkerName">Имя</label>
+            <input type="text" name="coffeeShopWorkerName" class="form-control" id="inputCoffeeShopWorkerName" placeholder="Имя cотрудника">
+        </div>
+
+        <div class="form-group col-md-1">
+            <label for="inputCoffeeShopWorkerPhoneNumber">Телефон</label>
+            <input type="text" name="coffeeShopWorkerPhoneNumber" class="form-control" id="inputCoffeeShopWorkerPhoneNumber" placeholder="Номер телефона">
+        </div>
+
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Добавить</button>
+</form>
+
+<hr>
+
+
+<form style="padding: 10px" method="post"action="deleteCoffeeShopWorker">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputCoffeeShopWorkerId">Id</label>
+            <input type="number" name="coffeeShopWorkerId" class="form-control" id="inputCoffeeShopWorkerId" placeholder="Id сотрудника">
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Удалить</button>
+</form>
+
+<hr>
+
+<form style="padding: 10px" method="post"action="updateCoffeeShopWorker">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputCoffeeShopWorkerId">Id</label>
+            <input type="number" name="coffeeShopWorkerId" class="form-control" id="inputCoffeeShopWorkerId" placeholder="Id сотрудника">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputCoffeeShopWorkerEmail">Email</label>
+            <input type="email" name="coffeeShopWorkerEmail" class="form-control" id="inputCoffeeShopWorkerEmail" placeholder="Email">
+        </div>
+
+        <div class="form-group col-md-2">
+            <label for="inputCoffeeShopWorkerName">Имя</label>
+            <input type="text" name="coffeeShopWorkerName" class="form-control" id="inputCoffeeShopWorkerName" placeholder="Имя cотрудника">
+        </div>
+
+        <div class="form-group col-md-1">
+            <label for="inputCoffeeShopWorkerPhoneNumber">Телефон</label>
+            <input type="text" name="coffeeShopWorkerPhoneNumber" class="form-control" id="inputCoffeeShopWorkerPhoneNumber" placeholder="Номер телефона">
+        </div>
+
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Обновить</button>
+</form>
+
+<hr>
+<div>Список сотрудников</div>
+<div style="padding: 10px">
+    <table class="table" >
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Номер</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#coffeeShopWorkers}}
+            <div>
+                <tr>
+                    <td>{{CoffeeShopWorkerId}}</td>
+                    <td>{{coffeeShopWorkerName}}</td>
+                    <td>{{coffeeShopWorkerPhoneNumber}}</td>
+                    <td>{{coffeeShopWorkerEmail}}</td>
+                </tr>
+            </div>
+        {{/coffeeShopWorkers}}
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

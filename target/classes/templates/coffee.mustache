@@ -17,7 +17,7 @@
         <a class="nav-item nav-link" href="/">Главная</a>
         <a class="nav-item nav-link" href="/user">Пользователи</a>
         <a class="nav-item nav-link" href="/zakaz">Заказы</a>
-        <a class="nav-item nav-link" href="/sotr">Сотрудники</a>
+        <a class="nav-item nav-link" href="/worker">Сотрудники</a>
         <a class="nav-item nav-link" href="/harakt">Характеристики</a>
         <a class="nav-item nav-link active" href="/coffee">Товары</a>
     </nav>
@@ -43,15 +43,6 @@
 
 <hr>
 
-<!--<div>-->
-<!--    <form method="post"action="addCoffee">-->
-<!--        <input type="text" name="CoffeeName" placeholder="Введите название товара">-->
-<!--        <input type="text" name="CoffeePrice" placeholder="Введите цену товара">-->
-<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
-<!--        <button type="submit">Добавить</button>-->
-<!--    </form>-->
-<!--</div>-->
-
 <form style="padding: 10px" method="post"action="deleteCoffee">
     <div class="form-row">
         <div class="form-group col-md-1">
@@ -65,14 +56,6 @@
 </form>
 
 <hr>
-
-<!--<div>-->
-<!--    <form method="post" action="deleteCoffee">-->
-<!--        <input type="number" name="coffeeId" placeholder="Введите id">-->
-<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
-<!--        <button type="submit">Удалить</button>-->
-<!--    </form>-->
-<!--</div>-->
 
 <form style="padding: 10px" method="post"action="updateCoffee">
     <div class="form-row">
@@ -95,17 +78,6 @@
 </form>
 
 <hr>
-
-<!--<div>-->
-<!--    <form method="post" action="updateCoffee">-->
-<!--        <input type="number" name="coffeeId" placeholder="Введите id">-->
-<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
-<!--        <input type="text" name="CoffeeName" placeholder="Введите название товара">-->
-<!--        <input type="text" name="CoffeePrice" placeholder="Введите цену товара">-->
-<!--        <button type="submit">Обновить</button>-->
-<!--    </form>-->
-<!--</div>-->
-
 
 <div>Список товаров</div>
 <div style="padding: 10px">
