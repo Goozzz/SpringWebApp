@@ -33,7 +33,7 @@
         </div>
         <div class="form-group col-md-2">
             <label for="inputCoffeePrice">Цена</label>
-            <input type="text" name="coffeePrice" class="form-control" id="inputCoffeePrice" placeholder="Цена на товар">
+            <input type="number" min="0" max="10000" name="coffeePrice" class="form-control" id="inputCoffeePrice" placeholder="Цена на товар" >
 
         </div>
     </div>
@@ -43,20 +43,11 @@
 
 <hr>
 
-<!--<div>-->
-<!--    <form method="post"action="addCoffee">-->
-<!--        <input type="text" name="CoffeeName" placeholder="Введите название товара">-->
-<!--        <input type="text" name="CoffeePrice" placeholder="Введите цену товара">-->
-<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
-<!--        <button type="submit">Добавить</button>-->
-<!--    </form>-->
-<!--</div>-->
-
 <form style="padding: 10px" method="post"action="deleteCoffee">
     <div class="form-row">
         <div class="form-group col-md-1">
             <label for="inputCoffeeId">Id</label>
-            <input type="text" name="coffeeId" class="form-control" id="CoffeeId" placeholder="Id товара">
+            <input type="number" min="0" max="10000" name="coffeeId" class="form-control" id="CoffeeId" placeholder="Id товара">
         </div>
 
     </div>
@@ -66,19 +57,11 @@
 
 <hr>
 
-<!--<div>-->
-<!--    <form method="post" action="deleteCoffee">-->
-<!--        <input type="number" name="coffeeId" placeholder="Введите id">-->
-<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
-<!--        <button type="submit">Удалить</button>-->
-<!--    </form>-->
-<!--</div>-->
-
 <form style="padding: 10px" method="post"action="updateCoffee">
     <div class="form-row">
         <div class="form-group col-md-1">
             <label for="inputCoffeeId">Id</label>
-            <input type="text" name="coffeeId" class="form-control" id="CoffeeId" placeholder="Id товара">
+            <input type="number" min="0" max="10000" name="coffeeId" class="form-control" id="CoffeeId" placeholder="Id товара">
         </div>
         <div class="form-group col-md-2">
             <label for="inputCoffeeName">Название</label>
@@ -86,7 +69,7 @@
         </div>
         <div class="form-group col-md-2">
             <label for="inputCoffeePrice">Цена</label>
-            <input type="text" name="coffeePrice" class="form-control" id="inputCoffeePrice" placeholder="Цена на товар">
+            <input type="number" min="0" max="10000" name="coffeePrice" class="form-control" id="inputCoffeePrice" placeholder="Цена на товар">
 
         </div>
     </div>
@@ -95,17 +78,6 @@
 </form>
 
 <hr>
-
-<!--<div>-->
-<!--    <form method="post" action="updateCoffee">-->
-<!--        <input type="number" name="coffeeId" placeholder="Введите id">-->
-<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
-<!--        <input type="text" name="CoffeeName" placeholder="Введите название товара">-->
-<!--        <input type="text" name="CoffeePrice" placeholder="Введите цену товара">-->
-<!--        <button type="submit">Обновить</button>-->
-<!--    </form>-->
-<!--</div>-->
-
 
 <div>Список товаров</div>
 <div style="padding: 10px">
