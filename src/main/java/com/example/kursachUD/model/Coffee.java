@@ -24,7 +24,7 @@ public class Coffee {
     private Collection<Harakteristiki> harakteristiks = new ArrayList<>();
 
     private String coffeeName;
-    private String coffeePrice;
+    private Integer coffeePrice;
 
     public Coffee() { }
 
@@ -40,7 +40,7 @@ public class Coffee {
         return coffeeId;
     }
 
-    public Coffee(String coffeeName, String coffeePrice) {
+    public Coffee(String coffeeName, Integer coffeePrice) {
         this.coffeeName = coffeeName;
         this.coffeePrice = coffeePrice;
     }
@@ -53,11 +53,11 @@ public class Coffee {
         this.coffeeName = coffeeName;
     }
 
-    public String getCoffeePrice() {
+    public Integer getCoffeePrice() {
         return coffeePrice;
     }
 
-    public void setCoffeePrice(String coffeePrice) {
+    public void setCoffeePrice(Integer coffeePrice) {
         this.coffeePrice = coffeePrice;
     }
 
