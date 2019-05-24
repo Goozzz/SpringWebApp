@@ -1,0 +1,129 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>KURSACH</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<header>
+
+    <nav class="nav nav-tabs nav-justified">
+        <a class="nav-item nav-link" href="/">Главная</a>
+        <a class="nav-item nav-link active" href="/user">Пользователи</a>
+        <a class="nav-item nav-link" href="/zakaz">Заказы</a>
+        <a class="nav-item nav-link" href="/sotr">Сотрудники</a>
+        <a class="nav-item nav-link" href="/harakt">Характеристики</a>
+        <a class="nav-item nav-link" href="/coffee">Товары</a>
+    </nav>
+
+
+</header>
+
+<form style="padding: 10px" method="post"action="addUser">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label for="inputEmail">Email</label>
+            <input type="email" name="userEmail" class="form-control" id="inputEmail" placeholder="Email">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputName">Имя</label>
+            <input type="text" name="userName" class="form-control" id="inputName" placeholder="Имя пользователя">
+
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Добавить</button>
+</form>
+
+<hr>
+<!--<div>-->
+<!--    <form method="post"action="addUser">-->
+<!--        <input type="text" name="userName" placeholder="Введите имя пользователя">-->
+<!--        <input type="text" name="userEmail" placeholder="Введите почту">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <button type="submit">Добавить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<form style="padding: 10px" method="post"action="deleteUser">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputUserId">Id пользователя</label>
+            <input type="number" name="userId" class="form-control" id="inputUserId" placeholder="Id">
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Удалить</button>
+</form>
+
+<hr>
+
+<!--<div>-->
+<!--    <form method="post" action="deleteUser">-->
+<!--        <input type="number" name="userId" placeholder="Введите id">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <button type="submit">Удалить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<form style="padding: 10px" method="post"action="updateUser">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputUserId">Id пользователя</label>
+            <input type="number" name="userId" class="form-control" id="inputUserId" placeholder="Id">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputEmail">Email</label>
+            <input type="email" name="userEmail" class="form-control" id="inputEmail" placeholder="Email">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputName">Имя</label>
+            <input type="text" name="userName" class="form-control" id="inputName" placeholder="Имя пользователя">
+
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Обновить</button>
+</form>
+
+<!--<div>-->
+<!--    <form method="post" action="updateUser">-->
+<!--        <input type="number" name="userId" placeholder="Введите id">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <input type="text" name="userName" placeholder="Введите имя пользователя">-->
+<!--        <input type="text" name="userEmail" placeholder="Введите почту">-->
+<!--        <button type="submit">Обновить</button>-->
+<!--    </form>-->
+<!--</div>-->
+<div>Список пользователей</div>
+<div style="padding: 10px">
+    <table class="table" >
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">Имя</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#users}}
+            <div>
+                <tr>
+                    <td>{{userId}}</td>
+                    <td>{{userEmail}}</td>
+                    <td>{{userName}}</td>
+                </tr>
+            </div>
+        {{/users}}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

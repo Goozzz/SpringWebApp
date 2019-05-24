@@ -1,0 +1,78 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>KURSACH</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<header>
+
+    <nav class="nav nav-tabs nav-justified">
+        <a class="nav-item nav-link" href="/">Главная</a>
+        <a class="nav-item nav-link" href="/user">Пользователи</a>
+        <a class="nav-item nav-link" href="/zakaz">Заказы</a>
+        <a class="nav-item nav-link" href="/sotr">Сотрудники</a>
+        <a class="nav-item nav-link active" href="/harakt">Характеристики</a>
+        <a class="nav-item nav-link" href="/coffee">Товары</a>
+    </nav>
+
+
+</header>
+
+<form style="padding: 10px" method="post"action="addHarakt">
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputHarktDescription">Характеристика</label>
+            <input type="text" name="harktDescription" class="form-control" id="inputHarktDescription" placeholder="Описание">
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Добавить</button>
+</form>
+
+<hr>
+
+<form style="padding: 10px" method="post"action="deleteHarakt">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputHarakteristikiId">Id</label>
+            <input type="text" name="harakteristikiId" class="form-control" id="inputHarakteristikiId" placeholder="Id характеристика">
+
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Удалить</button>
+</form>
+
+<hr>
+
+<div>Список характеристик товаров</div>
+<div style="padding: 10px">
+    <table class="table" >
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#harakts}}
+            <div>
+                <tr>
+                    <td>{{harakteristikiId}}</td>
+                    <td>{{harktDescription}}</td>
+                </tr>
+            </div>
+        {{/harakts}}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

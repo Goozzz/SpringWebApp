@@ -1,0 +1,137 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>KURSACH</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<header>
+
+    <nav class="nav nav-tabs nav-justified">
+        <a class="nav-item nav-link" href="/">Главная</a>
+        <a class="nav-item nav-link" href="/user">Пользователи</a>
+        <a class="nav-item nav-link" href="/zakaz">Заказы</a>
+        <a class="nav-item nav-link" href="/sotr">Сотрудники</a>
+        <a class="nav-item nav-link" href="/harakt">Характеристики</a>
+        <a class="nav-item nav-link active" href="/coffee">Товары</a>
+    </nav>
+
+
+</header>
+
+<form style="padding: 10px" method="post"action="addCoffee">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label for="inputCoffeeName">Название</label>
+            <input type="text" name="coffeeName" class="form-control" id="CoffeeName" placeholder="Название товара">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputCoffeePrice">Цена</label>
+            <input type="text" name="coffeePrice" class="form-control" id="inputCoffeePrice" placeholder="Цена на товар">
+
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Добавить</button>
+</form>
+
+<hr>
+
+<!--<div>-->
+<!--    <form method="post"action="addCoffee">-->
+<!--        <input type="text" name="CoffeeName" placeholder="Введите название товара">-->
+<!--        <input type="text" name="CoffeePrice" placeholder="Введите цену товара">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <button type="submit">Добавить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<form style="padding: 10px" method="post"action="deleteCoffee">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputCoffeeId">Id</label>
+            <input type="text" name="coffeeId" class="form-control" id="CoffeeId" placeholder="Id товара">
+        </div>
+
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Удалить</button>
+</form>
+
+<hr>
+
+<!--<div>-->
+<!--    <form method="post" action="deleteCoffee">-->
+<!--        <input type="number" name="coffeeId" placeholder="Введите id">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <button type="submit">Удалить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<form style="padding: 10px" method="post"action="updateCoffee">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputCoffeeId">Id</label>
+            <input type="text" name="coffeeId" class="form-control" id="CoffeeId" placeholder="Id товара">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputCoffeeName">Название</label>
+            <input type="text" name="coffeeName" class="form-control" id="CoffeeName" placeholder="Название товара">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputCoffeePrice">Цена</label>
+            <input type="text" name="coffeePrice" class="form-control" id="inputCoffeePrice" placeholder="Цена на товар">
+
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Обновить</button>
+</form>
+
+<hr>
+
+<!--<div>-->
+<!--    <form method="post" action="updateCoffee">-->
+<!--        <input type="number" name="coffeeId" placeholder="Введите id">-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <input type="text" name="CoffeeName" placeholder="Введите название товара">-->
+<!--        <input type="text" name="CoffeePrice" placeholder="Введите цену товара">-->
+<!--        <button type="submit">Обновить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+
+<div>Список товаров</div>
+<div style="padding: 10px">
+    <table class="table" >
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Название</th>
+            <th scope="col">Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#coffees}}
+            <div>
+                <tr>
+                    <td>{{coffeeId}}</td>
+                    <td>{{coffeeName}}</td>
+                    <td>{{coffeePrice}}</td>
+                </tr>
+            </div>
+        {{/coffees}}
+
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
