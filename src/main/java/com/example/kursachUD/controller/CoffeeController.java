@@ -23,9 +23,11 @@ public class CoffeeController {
     }
 
     @PostMapping("addCoffee")
-    public String addCoffee(@RequestParam String coffeeName, @RequestParam String coffeePrice, Map<String,Object> model){
-        Coffee coffee = new Coffee(coffeeName,coffeePrice);
-        coffeeRepo.save(coffee);
+    public String addCoffee(@RequestParam String coffeeName, @RequestParam Integer coffeePrice, Map<String,Object> model){
+        if(!coffeeName.equals("") && !coffeePrice.equals(null)) {
+            Coffee coffee = new Coffee(coffeeName,coffeePrice);
+            coffeeRepo.save(coffee);
+        }
         Iterable<Coffee> coffees =  coffeeRepo.findAll(); //Кусок необходим для обновления список с добавленными данными
         model.put("coffees", coffees);
         return "coffee";
@@ -43,9 +45,9 @@ public class CoffeeController {
     }
 
     @PostMapping("updateCoffee")
-    public String updateCoffee(@RequestParam Integer coffeeId, @RequestParam String coffeeName, @RequestParam String coffeePrice, Map<String,Object> model) {
-        Coffee coffee = null;
+    public String updateCoffee(@RequestParam Integer coffeeId, @RequestParam String coffeeName, @RequestParam Integer coffeePrice, Map<String,Object> model) {
         try {
+            Coffee coffee;
             coffee = coffeeRepo.findById(coffeeId).get();
             if(!coffeeName.equals("")) {
                 coffee.setCoffeeName(coffeeName);
