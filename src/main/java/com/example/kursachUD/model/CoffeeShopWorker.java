@@ -18,7 +18,7 @@ public class CoffeeShopWorker {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "coffee_shop_worker__id")
-    private Collection<Zakaz> zakazs = new ArrayList<Zakaz>();
+    private Collection<OrderingInformation> orderingInformations = new ArrayList<OrderingInformation>();
 
 
     public CoffeeShopWorker() {
@@ -34,12 +34,12 @@ public class CoffeeShopWorker {
         this.coffeeShopWorkerEmail = coffeeShopWorkerEmail;
     }
 
-    public Collection<Zakaz> getZakazs() {
-        return zakazs;
+    public Collection<OrderingInformation> getOrderingInformations() {
+        return orderingInformations;
     }
 
-    public void setZakazs(Collection<Zakaz> zakazs) {
-        this.zakazs = zakazs;
+    public void setOrderingInformations(Collection<OrderingInformation> orderingInformations) {
+        this.orderingInformations = orderingInformations;
     }
 
     public Integer getCoffeeShopWorkerId() {

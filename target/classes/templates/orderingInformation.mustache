@@ -16,20 +16,20 @@
     <nav class="nav nav-tabs nav-justified">
         <a class="nav-item nav-link" href="/">Главная</a>
         <a class="nav-item nav-link" href="/user">Пользователи</a>
-        <a class="nav-item nav-link active" href="/zakaz">Заказы</a>
+        <a class="nav-item nav-link active" href="/orderingInformation">Заказы</a>
         <a class="nav-item nav-link" href="/worker">Сотрудники</a>
         <a class="nav-item nav-link" href="/topping">Топпинги</a>
-        <a class="nav-item nav-link" href="/coffee">Товары</a>
+        <a class="nav-item nav-link" href="/coffee">Кофе</a>
     </nav>
 
 
 </header>
 
-<form style="padding: 10px" method="post"action="addZakaz">
+<form style="padding: 10px" method="post"action="addOrderingInformation">
     <div class="form-row">
         <div class="form-group col-md-2">
-            <label for="inputZakazName">Описание</label>
-            <input type="text" name="zakazName" class="form-control" id="ZakazName" placeholder="Описание заказа">
+            <label for="inputOrderingInformationName">Описание</label>
+            <input type="text" name="orderingInformationName" class="form-control" id="OrderingInformationName" placeholder="Описание заказа">
 
         </div>
         <div class="form-group col-md-1">
@@ -37,12 +37,12 @@
             <input type="number" name="userId" class="form-control" id="inputUserId" placeholder="Пользователь">
         </div>
         <div class="form-group col-md-1">
-            <label for="inputTovarId">Id товара</label>
-            <input type="text" name="coffeeId" class="form-control" id="TovarId" placeholder="Товар">
+            <label for="inputCoffeeId">Id товара</label>
+            <input type="number" name="coffeeId" class="form-control" id="CoffeeId" placeholder="Кофе">
         </div>
         <div class="form-group col-md-1">
-            <label for="inputSotrId">Id сотрудника</label>
-            <input type="number" name="sotrId" class="form-control" id="inputSotrId" placeholder="Сотрудник">
+            <label for="inputCoffeeShopWorkerId">Id сотрудника</label>
+            <input type="number" name="coffeeShopWorkerId" class="form-control" id="inputCoffeeShopWorkerId" placeholder="Сотрудник">
         </div>
 
 
@@ -53,11 +53,11 @@
 
 <hr>
 
-<form style="padding: 10px" method="post"action="deleteOrder">
+<form style="padding: 10px" method="post"action="deleteOrderingInformation">
     <div class="form-row">
         <div class="form-group col-md-1">
-            <label for="inputZakazId">Id заказа</label>
-            <input type="number" name="zakazId" class="form-control" id="inputZakazId" placeholder="Id">
+            <label for="inputOrderingInformationId">Id заказа</label>
+            <input type="number" name="orderingInformationId" class="form-control" id="inputOrderingInformationId" placeholder="Id">
         </div>
     </div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
@@ -76,14 +76,14 @@
         </tr>
         </thead>
         <tbody>
-        {{#zakazs}}
+        {{#orderingInformations}}
             <div>
                 <tr>
-                    <td>{{zakazId}}</td>
-                    <td>{{zakazName}}</td>
+                    <td>{{orderingInformationId}}</td>
+                    <td>{{orderingInformationName}}</td>
                 </tr>
             </div>
-        {{/zakazs}}
+        {{/orderingInformations}}
         </tbody>
     </table>
 </div>
