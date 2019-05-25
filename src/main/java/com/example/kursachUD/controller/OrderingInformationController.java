@@ -1,10 +1,7 @@
 package com.example.kursachUD.controller;
 
 
-import com.example.kursachUD.model.CoffeeShopWorker;
-import com.example.kursachUD.model.Coffee;
-import com.example.kursachUD.model.OrderingInformation;
-import com.example.kursachUD.model.Usr;
+import com.example.kursachUD.model.*;
 import com.example.kursachUD.repo.CoffeeShopWorkerRepo;
 import com.example.kursachUD.repo.CoffeeRepo;
 import com.example.kursachUD.repo.UsrRepo;
@@ -15,7 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class OrderingInformationController {
@@ -30,8 +30,9 @@ public class OrderingInformationController {
 
     @GetMapping("/orderingInformation")
     public String orderingInformation(Map<String, Object> model) {
-        Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll(); //Поиск всех пользователей в бд
-        model.put("orderingInformations", orderingInformations);               //Вывод всех пользователей на страничку в списке
+        Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
+        Collection<OrderingForView> orderingForViews = outputAllOrderInformation(orderingInformations, model);
+        model.put("orderingForViews", orderingForViews);
         return "orderingInformation";
     }
 
@@ -51,6 +52,8 @@ public class OrderingInformationController {
             user.getOrderingInformations().add(orderingInformation);
             coffee.getOrderingInformations().add(orderingInformation);
 
+            orderingInformation.setCoffeeShopWorker(coffeeShopWorker);
+            orderingInformation.setUser(user);
 
             orderingInformationRepo.save(orderingInformation);
             coffeeRepo.save(coffee);
@@ -61,8 +64,11 @@ public class OrderingInformationController {
 
         }
 
-        Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll(); //Поиск всех пользователей в
-        model.put("orderingInformations", orderingInformations);               //Вывод всех пользователей на страничку в списке
+        Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
+
+        Collection<OrderingForView> orderingForViews = outputAllOrderInformation(orderingInformations, model);
+
+        model.put("orderingForViews", orderingForViews);
 
         return "orderingInformation";
     }
@@ -71,9 +77,39 @@ public class OrderingInformationController {
     public String deleteOrderingInformation(@RequestParam Integer orderingInformationId, Map<String, Object> model) {
         OrderingInformation order = new OrderingInformation(orderingInformationId);
         orderingInformationRepo.delete(order);
-        Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll(); //Поиск всех пользователей в бд
-        model.put("orderingInformations", orderingInformations);               //Вывод всех пользователей на страничку в списке
+        Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
+        outputAllOrderInformation(orderingInformations, model);
+        model.put("orderingInformations", orderingInformations);
         return "orderingInformation";
+    }
+
+    @PostMapping("showDetailsOrder")
+    public String showDetailOrderingInformation(@RequestParam Integer orderingInformationId, Map<String, Object> model) {
+        OrderingInformation orderingInformation = orderingInformationRepo.findById(orderingInformationId).get();
+        if(orderingInformation.equals(null)) {
+            Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
+            outputAllOrderInformation(orderingInformations, model);
+        }
+
+       return "orderingInformation";
+    }
+
+    private Collection<OrderingForView> outputAllOrderInformation(Iterable<OrderingInformation> orderingInformations, Map<String, Object> model) {
+
+        Collection<OrderingForView> orderingForViews = new ArrayList<>();
+        for (OrderingInformation orderInform: orderingInformations) {
+            String userName = orderInform.getUser().getUserName();
+            String coffeeShopWorkerName = orderInform.getCoffeeShopWorker().getCoffeeShopWorkerName();
+            Integer orderId = orderInform.getOrderingInformationId();
+            String orderDescription = orderInform.getOrderingInformationName();
+            Set<Coffee> coffeeList = orderInform.getCoffees();
+            orderingForViews.add(new OrderingForView(orderId,orderDescription, userName, coffeeShopWorkerName, coffeeList));
+
+
+        }
+        model.put("orderingForViews", orderingForViews);
+
+        return  orderingForViews;
     }
 }
 

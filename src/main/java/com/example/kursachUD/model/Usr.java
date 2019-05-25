@@ -3,6 +3,8 @@ package com.example.kursachUD.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "usr")
@@ -10,11 +12,11 @@ public class Usr {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Integer userId;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "user_id")
-    private Collection<OrderingInformation> orderingInformations = new ArrayList<OrderingInformation>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderingInformation> orderingInformations = new HashSet<OrderingInformation>();
 
     private String userName;
     private String userEmail;
@@ -57,11 +59,11 @@ public class Usr {
         this.userId = userId;
     }
 
-    public Collection<OrderingInformation> getOrderingInformations() {
+    public Set<OrderingInformation> getOrderingInformations() {
         return orderingInformations;
     }
 
-    public void setOrderingInformations(Collection<OrderingInformation> orderingInformations) {
+    public void setOrderingInformations(Set<OrderingInformation> orderingInformations) {
         this.orderingInformations = orderingInformations;
     }
 }

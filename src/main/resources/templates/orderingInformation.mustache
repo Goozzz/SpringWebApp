@@ -73,17 +73,42 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Описание</th>
+            <th scope="col">Покупатель</th>
+            <th scope="col">Продавец</th>
         </tr>
         </thead>
         <tbody>
-        {{#orderingInformations}}
+        {{#orderingForViews}}
             <div>
                 <tr>
-                    <td>{{orderingInformationId}}</td>
-                    <td>{{orderingInformationName}}</td>
+                    <td>{{orderId}}</td>
+                    <td>{{orderDescription}}</td>
+                    <td>{{userName}}</td>
+                    <td>{{workerName}}</td>
+
+                </tr>
+
+                    {{#coffeeSet}}
+                        <div bgcolor="aqua">
+                            <tr bgcolor="aqua" align="right">
+                                <td colspan="3">{{coffeeName}}</td>
+                                <td>{{coffeePrice}}</td>
+                            </tr>
+                        </div>
+
+
+                    {{/coffeeSet}}
+
+            </div>
+        {{/orderingForViews}}
+        {{#coffeeList}}
+            <div>
+                <tr>
+                    <td>{{coffeeName}}</td>
+                    <td>{{coffeePrice}}</td>
                 </tr>
             </div>
-        {{/orderingInformations}}
+        {{/coffeeList}}
         </tbody>
     </table>
 </div>

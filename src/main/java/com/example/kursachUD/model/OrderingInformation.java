@@ -3,6 +3,8 @@ package com.example.kursachUD.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -13,11 +15,19 @@ public class OrderingInformation {
     private Integer orderingInformationId;
     private String orderingInformationName;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Usr user;
+
+    @ManyToOne
+    @JoinColumn(name = "coffee_shop_worker_id")
+    private CoffeeShopWorker coffeeShopWorker;
+
     @ManyToMany
     @JoinTable (name="coffee_order",
             joinColumns=@JoinColumn (name="ordering_information_id"),
             inverseJoinColumns=@JoinColumn(name="coffee_id"))
-    private Collection<Coffee> coffees = new ArrayList<>();
+    private Set<Coffee> coffees = new HashSet<>();
 
     public OrderingInformation() {
     }
@@ -31,8 +41,21 @@ public class OrderingInformation {
         this.orderingInformationName = orderingInformationName;
     }
 
-    public Integer getzakazId() {
-        return orderingInformationId;
+
+    public Usr getUser() {
+        return user;
+    }
+
+    public void setUser(Usr user) {
+        this.user = user;
+    }
+
+    public CoffeeShopWorker getCoffeeShopWorker() {
+        return coffeeShopWorker;
+    }
+
+    public void setCoffeeShopWorker(CoffeeShopWorker coffeeShopWorker) {
+        this.coffeeShopWorker = coffeeShopWorker;
     }
 
     public Integer getOrderingInformationId() {
@@ -43,23 +66,20 @@ public class OrderingInformation {
         this.orderingInformationId = orderingInformationId;
     }
 
-    public void setzakazId(Integer zakazId) {
-        this.orderingInformationId = zakazId;
-    }
 
-    public String getzakazName() {
+    public String getOrderingInformationName() {
         return orderingInformationName;
     }
 
-    public void setzakazName(String zakazName) {
-        this.orderingInformationName = zakazName;
+    public void setOrderingInformationName(String OrderingInformationName) {
+        this.orderingInformationName = OrderingInformationName;
     }
 
-    public Collection<Coffee> getCoffees() {
+    public Set<Coffee> getCoffees() {
         return coffees;
     }
 
-    public void setCoffees(Collection<Coffee> coffees) {
+    public void setCoffees(Set<Coffee> coffees) {
         this.coffees = coffees;
     }
 }

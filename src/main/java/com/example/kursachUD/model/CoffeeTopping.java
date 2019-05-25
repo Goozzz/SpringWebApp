@@ -3,6 +3,8 @@ package com.example.kursachUD.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="coffee_topping")
@@ -18,7 +20,7 @@ public class CoffeeTopping {
     @JoinTable(name="coffee_and_topping",
             joinColumns=@JoinColumn (name="coffee_topping_id"),
             inverseJoinColumns=@JoinColumn(name="coffee_id"))
-    private Collection<Coffee> coffees = new ArrayList<>();
+    private Set<Coffee> coffees = new HashSet<>();
 
 
     public CoffeeTopping() {
@@ -49,11 +51,11 @@ public class CoffeeTopping {
         this.coffeeToppingDescription = harktDescription;
     }
 
-    public Collection<Coffee> getCoffees() {
+    public Set<Coffee> getCoffees() {
         return coffees;
     }
 
-    public void setCoffees(Collection<Coffee> coffees) {
+    public void setCoffees(Set<Coffee> coffees) {
         this.coffees = coffees;
     }
 }

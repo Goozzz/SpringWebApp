@@ -3,12 +3,15 @@ package com.example.kursachUD.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="CoffeeShopWorker")
 public class CoffeeShopWorker {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column (name = "coffee_shop_worker_id")
     private Integer coffeeShopWorkerId;
 
 
@@ -16,9 +19,8 @@ public class CoffeeShopWorker {
     private String coffeeShopWorkerPhoneNumber;
     private String coffeeShopWorkerEmail;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "coffee_shop_worker__id")
-    private Collection<OrderingInformation> orderingInformations = new ArrayList<OrderingInformation>();
+    @OneToMany(mappedBy = "coffeeShopWorker", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<OrderingInformation> orderingInformations = new HashSet<>();
 
 
     public CoffeeShopWorker() {
@@ -34,11 +36,11 @@ public class CoffeeShopWorker {
         this.coffeeShopWorkerEmail = coffeeShopWorkerEmail;
     }
 
-    public Collection<OrderingInformation> getOrderingInformations() {
+    public Set<OrderingInformation> getOrderingInformations() {
         return orderingInformations;
     }
 
-    public void setOrderingInformations(Collection<OrderingInformation> orderingInformations) {
+    public void setOrderingInformations(Set<OrderingInformation> orderingInformations) {
         this.orderingInformations = orderingInformations;
     }
 
