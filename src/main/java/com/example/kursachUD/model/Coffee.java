@@ -18,10 +18,10 @@ public class Coffee {
     private Collection<Zakaz> zakazs = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name="tovar_harakteristik",
+    @JoinTable(name="coffee_and_topping",
             joinColumns=@JoinColumn (name="coffee_id"),
-            inverseJoinColumns=@JoinColumn(name="harakteristiki_id"))
-    private Collection<Harakteristiki> harakteristiks = new ArrayList<>();
+            inverseJoinColumns=@JoinColumn(name="coffee_topping_id"))
+    private Collection<CoffeeTopping> coffeeToppings = new ArrayList<>();
 
     private String coffeeName;
     private Integer coffeePrice;
@@ -69,11 +69,11 @@ public class Coffee {
         this.zakazs = zakazs;
     }
 
-    public Collection<Harakteristiki> getHarakteristiks() {
-        return harakteristiks;
+    public Collection<CoffeeTopping> getCoffeeToppings() {
+        return coffeeToppings;
     }
 
-    public void setHarakteristiks(Collection<Harakteristiki> harakteristiks) {
-        this.harakteristiks = harakteristiks;
+    public void setCoffeeToppings(Collection<CoffeeTopping> coffeeToppings) {
+        this.coffeeToppings = coffeeToppings;
     }
 }

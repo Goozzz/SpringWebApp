@@ -18,18 +18,18 @@
         <a class="nav-item nav-link" href="/user">Пользователи</a>
         <a class="nav-item nav-link" href="/zakaz">Заказы</a>
         <a class="nav-item nav-link" href="/worker">Сотрудники</a>
-        <a class="nav-item nav-link active" href="/harakt">Характеристики</a>
+        <a class="nav-item nav-link active" href="/topping">Топпинги</a>
         <a class="nav-item nav-link" href="/coffee">Товары</a>
     </nav>
 
 
 </header>
 
-<form style="padding: 10px" method="post"action="addHarakt">
+<form style="padding: 10px" method="post"action="addCoffeeTopping">
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label for="inputHarktDescription">Характеристика</label>
-            <input type="text" name="harktDescription" class="form-control" id="inputHarktDescription" placeholder="Описание">
+            <label for="inputCoffeeToppingDescription">Характеристика</label>
+            <input type="text" name="coffeeToppingDescription" class="form-control" id="inputCoffeeToppingDescription" placeholder="Описание">
         </div>
     </div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
@@ -38,11 +38,11 @@
 
 <hr>
 
-<form style="padding: 10px" method="post"action="deleteHarakt">
+<form style="padding: 10px" method="post"action="deleteCoffeeTopping">
     <div class="form-row">
         <div class="form-group col-md-1">
-            <label for="inputHarakteristikiId">Id</label>
-            <input type="text" name="harakteristikiId" class="form-control" id="inputHarakteristikiId" placeholder="Id характеристика">
+            <label for="inputCoffeeToppingId">Id</label>
+            <input type="text" name="coffeeToppingId" class="form-control" id="inputCoffeeToppingId" placeholder="Id топпинга">
 
         </div>
     </div>
@@ -52,7 +52,7 @@
 
 <hr>
 
-<div>Список характеристик товаров</div>
+<div>Список топпингов</div>
 <div style="padding: 10px">
     <table class="table" >
         <thead>
@@ -62,14 +62,14 @@
         </tr>
         </thead>
         <tbody>
-        {{#harakts}}
+        {{#coffeeToppings}}
             <div>
                 <tr>
-                    <td>{{harakteristikiId}}</td>
-                    <td>{{harktDescription}}</td>
+                    <td>{{coffeeToppingId}}</td>
+                    <td>{{coffeeToppingDescription}}</td>
                 </tr>
             </div>
-        {{/harakts}}
+        {{/coffeeToppings}}
         </tbody>
     </table>
 </div>
