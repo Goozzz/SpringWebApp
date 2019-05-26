@@ -31,7 +31,7 @@ public class OrderingInformationController {
     @GetMapping("/orderingInformation")
     public String orderingInformation(Map<String, Object> model) {
         Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
-        Collection<OrderingForView> orderingForViews = outputAllOrderInformation(orderingInformations, model);
+        Collection<OrderingForView> orderingForViews = outputAllOrderInformation(orderingInformations,false, model);
         model.put("orderingForViews", orderingForViews);
         return "orderingInformation";
     }
@@ -66,7 +66,7 @@ public class OrderingInformationController {
 
         Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
 
-        Collection<OrderingForView> orderingForViews = outputAllOrderInformation(orderingInformations, model);
+        Collection<OrderingForView> orderingForViews = outputAllOrderInformation(orderingInformations,false, model);
 
         model.put("orderingForViews", orderingForViews);
 
@@ -78,23 +78,54 @@ public class OrderingInformationController {
         OrderingInformation order = new OrderingInformation(orderingInformationId);
         orderingInformationRepo.delete(order);
         Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
-        outputAllOrderInformation(orderingInformations, model);
+        outputAllOrderInformation(orderingInformations,false, model);
         model.put("orderingInformations", orderingInformations);
         return "orderingInformation";
     }
 
-    @PostMapping("showDetailsOrder")
+    @PostMapping("showDetailOrder")
     public String showDetailOrderingInformation(@RequestParam Integer orderingInformationId, Map<String, Object> model) {
-        OrderingInformation orderingInformation = orderingInformationRepo.findById(orderingInformationId).get();
-        if(orderingInformation.equals(null)) {
+        try {
+            OrderingInformation orderingInformation = null;
+            if(orderingInformationRepo.findById(orderingInformationId).isPresent()) {
+                orderingInformation = orderingInformationRepo.findById(orderingInformationId).get();
+            }
+
+            if (orderingInformation == null) {
+                Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
+                outputAllOrderInformation(orderingInformations,false, model);
+            } else {
+                Collection<OrderingInformation> orderingInformations = new ArrayList<>();
+                orderingInformations.add(orderingInformation);
+                outputAllOrderInformation(orderingInformations,true, model);
+            }
+        } catch (Exception e) {
             Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
-            outputAllOrderInformation(orderingInformations, model);
+            outputAllOrderInformation(orderingInformations,false, model);
         }
 
-       return "orderingInformation";
+
+        return "orderingInformation";
+    }
+    @PostMapping("addCoffeeToOrder")
+    public String addCoffee(@RequestParam Integer orderingInformationId,
+                             @RequestParam Integer coffeeId,
+                             Map<String, Object> model ) {
+
+        try {
+            OrderingInformation orderingInformation = orderingInformationRepo.findById(orderingInformationId).get();
+            Coffee coffee = coffeeRepo.findById(coffeeId).get();
+            orderingInformation.getCoffees().add(coffee);
+        } catch (Exception e) {
+
+        }
+
+        Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
+        outputAllOrderInformation(orderingInformations,false, model);
+        return "orderingInformation";
     }
 
-    private Collection<OrderingForView> outputAllOrderInformation(Iterable<OrderingInformation> orderingInformations, Map<String, Object> model) {
+    private Collection<OrderingForView> outputAllOrderInformation(Iterable<OrderingInformation> orderingInformations, boolean flag, Map<String, Object> model) {
 
         Collection<OrderingForView> orderingForViews = new ArrayList<>();
         for (OrderingInformation orderInform: orderingInformations) {
@@ -102,7 +133,10 @@ public class OrderingInformationController {
             String coffeeShopWorkerName = orderInform.getCoffeeShopWorker().getCoffeeShopWorkerName();
             Integer orderId = orderInform.getOrderingInformationId();
             String orderDescription = orderInform.getOrderingInformationName();
-            Set<Coffee> coffeeList = orderInform.getCoffees();
+            Set<Coffee> coffeeList = null;
+            if(flag){
+                coffeeList = orderInform.getCoffees();
+            }
             orderingForViews.add(new OrderingForView(orderId,orderDescription, userName, coffeeShopWorkerName, coffeeList));
 
 
@@ -111,5 +145,7 @@ public class OrderingInformationController {
 
         return  orderingForViews;
     }
+
+
 }
 

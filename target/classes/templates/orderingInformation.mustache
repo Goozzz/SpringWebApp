@@ -53,6 +53,23 @@
 
 <hr>
 
+<form style="padding: 10px" method="post"action="addCoffeeToOrder">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputOrderingInformationId">Id заказа</label>
+            <input type="number" name="orderingInformationId" class="form-control" id="inputOrderingInformationId" placeholder="Id">
+        </div>
+        <div class="form-group col-md-1">
+            <label for="inputCoffeeId">Id товара</label>
+            <input type="number" name="coffeeId" class="form-control" id="CoffeeId" placeholder="Кофе">
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Добавить Кофе</button>
+</form>
+
+<hr>
+
 <form style="padding: 10px" method="post"action="deleteOrderingInformation">
     <div class="form-row">
         <div class="form-group col-md-1">
@@ -62,6 +79,21 @@
     </div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
     <button type="submit" class="btn btn-primary" >Удалить</button>
+</form>
+
+<hr>
+
+
+
+<form style="padding: 10px" method="post"action="showDetailOrder">
+    <div class="form-row">
+        <div class="form-group col-md-1">
+            <label for="inputOrderingInformationId">Id заказа</label>
+            <input type="number" name="orderingInformationId" class="form-control" id="inputOrderingInformationId" placeholder="Id">
+        </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit" class="btn btn-primary" >Детализировать</button>
 </form>
 
 <hr>
@@ -80,7 +112,7 @@
         <tbody>
         {{#orderingForViews}}
             <div>
-                <tr>
+                <tr bgcolor="#fffaf0">
                     <td>{{orderId}}</td>
                     <td>{{orderDescription}}</td>
                     <td>{{userName}}</td>
@@ -90,7 +122,7 @@
 
                     {{#coffeeSet}}
                         <div bgcolor="aqua">
-                            <tr bgcolor="aqua" align="right">
+                            <tr align="right">
                                 <td colspan="3">{{coffeeName}}</td>
                                 <td>{{coffeePrice}}</td>
                             </tr>
@@ -101,14 +133,7 @@
 
             </div>
         {{/orderingForViews}}
-        {{#coffeeList}}
-            <div>
-                <tr>
-                    <td>{{coffeeName}}</td>
-                    <td>{{coffeePrice}}</td>
-                </tr>
-            </div>
-        {{/coffeeList}}
+
         </tbody>
     </table>
 </div>
