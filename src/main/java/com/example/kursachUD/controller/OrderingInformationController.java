@@ -75,8 +75,13 @@ public class OrderingInformationController {
 
     @PostMapping("deleteOrderingInformation")
     public String deleteOrderingInformation(@RequestParam Integer orderingInformationId, Map<String, Object> model) {
-        OrderingInformation order = new OrderingInformation(orderingInformationId);
-        orderingInformationRepo.delete(order);
+        try {
+            OrderingInformation order = orderingInformationRepo.findById(orderingInformationId).get();
+            orderingInformationRepo.delete(order);
+        } catch (Exception e) {
+
+        }
+
         Iterable<OrderingInformation> orderingInformations = orderingInformationRepo.findAll();
         outputAllOrderInformation(orderingInformations,false, model);
         model.put("orderingInformations", orderingInformations);
@@ -116,6 +121,7 @@ public class OrderingInformationController {
             OrderingInformation orderingInformation = orderingInformationRepo.findById(orderingInformationId).get();
             Coffee coffee = coffeeRepo.findById(coffeeId).get();
             orderingInformation.getCoffees().add(coffee);
+            orderingInformationRepo.save(orderingInformation);
         } catch (Exception e) {
 
         }

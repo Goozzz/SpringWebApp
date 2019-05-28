@@ -63,6 +63,7 @@ public class CoffeeShopWorkerController {
             if (!coffeeShopWorkerPhoneNumber.equals("")) {
                 coffeeShopWorker.setCoffeeShopWorkerPhoneNumber(coffeeShopWorkerPhoneNumber);
             }
+            coffeeShopWorkerRepo.save(coffeeShopWorker);
         } catch (Exception e) {
 
         }
